@@ -67,18 +67,18 @@ const main = async (videoId) => {
         let numberResult = numberRegex.exec(filteredLine[i]);
         filteredLine[i] = filteredLine[i].substring(numberResult.index); // starts line in first number found
         let notNumberOrColonResult = notNumberOrColonRegex.exec(filteredLine[i]);
-        let tempo = filteredLine[i].substring(0, notNumberOrColonResult.index); // timestamp end (not number nor ":")
-        let tempoSeparado = tempo.split(":"); // split timestamps in each ":"
-        switch (tempoSeparado.length) {
+        let time = filteredLine[i].substring(0, notNumberOrColonResult.index); // timestamp end (not number nor ":")
+        let splittedTime = time.split(":"); // split timestamps in each ":"
+        switch (splittedTime.length) {
             case 2: // doesn't have hour
                 hour[i] = 0;
-                min[i] = Number(tempoSeparado[0]);
-                sec[i] = Number(tempoSeparado[1]);
+                min[i] = Number(splittedTime[0]);
+                sec[i] = Number(splittedTime[1]);
                 break;
             case 3: // has hour
-                hour[i] = Number(tempoSeparado[0]);
-                min[i] = Number(tempoSeparado[1]);
-                sec[i] = Number(tempoSeparado[2]);
+                hour[i] = Number(splittedTime[0]);
+                min[i] = Number(splittedTime[1]);
+                sec[i] = Number(splittedTime[2]);
                 break;
         }
         const numberOrLetterRegex = /[a-z0-9]/i; // number or letter 
